@@ -19,9 +19,9 @@ runs:
       id: init-env
       uses: Silverlan/common_actions/set_common_env_vars@main
       
-    - shell: bash
-      run: |
-        echo "TestFile" > "./build/test.txt"
+    #- shell: bash
+    #  run: |
+    #    echo "TestFile" > "./build/test.txt"
       
     - name: Cache Test
       id: cache
