@@ -19,14 +19,19 @@ runs:
       id: init-env
       uses: Silverlan/common_actions/set_common_env_vars@main
       
+    - shell: bash
+      run: |
+        mkdir build
+        echo "TestFile" > "./build/test.txt"
+      
     - name: Cache Test
       id: cache
       uses: Silverlan/test_ga_wgui/github_actions/cache@main
       with:
         path: | 
-          "./build/*"
+          "./build/**"
         key: cache-test
-        cache_version: '4'
+        cache_version: '5'
         step: |
           name: Rebuild Test
           uses: Silverlan/common_actions/get_common_external_libs@actions
