@@ -29,7 +29,7 @@ runs:
         cache_version: '3'
         step: |
           name: Rebuild Test
-          uses: Silverlan/common_actions/github_actions/get_common_external_libs@actions
+          uses: Silverlan/common_actions/get_common_external_libs@actions
           # uses: Silverlan/test_ga_wgui/github_actions/test_build@main
 
     - shell: bash
