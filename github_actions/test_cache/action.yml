@@ -24,8 +24,11 @@ runs:
         echo "Building submodule..."
         
     # Write cache test
-    - name: Build mathutil
-      uses: Silverlan/mathutil/github_actions/build@master
+    #- name: Build mathutil
+    #  uses: Silverlan/mathutil/github_actions/build@master
+    
+    - name: Download common external libs
+      uses: Silverlan/common_actions/get_common_external_libs@main
       
     # Read cache test
     - name: Print files
