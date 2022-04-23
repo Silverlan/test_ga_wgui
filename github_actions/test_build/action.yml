@@ -1,0 +1,25 @@
+name: Build_test
+description: 'Build library'
+inputs:
+  root_dir:
+    description: 'Root directory'
+    required: true
+  should_checkout:
+    description: 'Checkout the core library?'
+    required: true
+    default: '1'
+  dir:
+    description: 'Library directory'
+    required: true
+    default: 'core/shared'
+runs:
+  using: "composite"
+  steps:
+    - name: Initialize Env
+      id: init-env
+      uses: Silverlan/common_actions/set_common_env_vars@main
+      
+    # Write cache test
+    - name: Build mathutil
+      uses: Silverlan/mathutil/github_actions/build@master
+    
