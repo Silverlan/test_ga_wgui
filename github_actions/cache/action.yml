@@ -28,7 +28,7 @@ runs:
       with:
         #path: |
         #  ${{ inputs.path }}
-        path:
+        path: |
           '~/build/**'
           '~/build/test.txt'
         key: ${{ inputs.key }}-v${{ inputs.cache_version }}
