@@ -25,7 +25,7 @@ runs:
         
     # Write cache test
     - name: Build mathutil
-      uses: Silverlan/mathutil/build@master
+      uses: Silverlan/mathutil/github_actions/build@master
       
     # Read cache test
     - name: Print files
