@@ -21,7 +21,7 @@ runs:
       
     - name: Cache Test
       id: cache
-      uses: Silverlan/test_ga_wgui/cache@main
+      uses: Silverlan/test_ga_wgui/github_actions/cache@main
       with:
         path: | 
           "./build/*"
