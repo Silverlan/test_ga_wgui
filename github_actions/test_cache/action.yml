@@ -27,7 +27,9 @@ runs:
       id: cache
       uses: Silverlan/test_ga_wgui/github_actions/cache@main
       with:
-        path: ['~/build/**', '~/build/test.txt']
+        #path: |
+        #  '~/build/**'
+        #  '~/build/test.txt'
         key: cache-test
         cache_version: '6'
         step: |
