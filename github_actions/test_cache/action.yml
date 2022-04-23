@@ -1,0 +1,543 @@
+name: Build
+description: 'Build library'
+inputs:
+  root_dir:
+    description: 'Root directory'
+    required: true
+  should_checkout:
+    description: 'Checkout the core library?'
+    required: true
+    default: '1'
+  dir:
+    description: 'Library directory'
+    required: true
+    default: 'core/shared'
+runs:
+  using: "composite"
+  steps:
+    - name: Initialize Env
+      id: init-env
+      uses: Silverlan/common_actions/set_common_env_vars@main
+
+    - shell: bash
+      run: |
+        echo "Building submodule..."
+        
+    # Write cache test
+    - name: Build mathutil
+      uses: Silverlan/mathutil/build@master
+      
+    # Read cache test
+    - name: Print files
+      shell: bash
+      run: |
+        ls -R
+        
+    #- name: Write cache
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: "D:/a/pragma/pragma/**/*.dll"
+    #    key: test-cache-file13
+        
+    # Read cache test
+    #- name: Read cache
+    #  uses: Silverlan/pragma/github_actions/read_cache@actions
+    #  with:
+    #    cache_dir: 'third_party_libs/boost'
+    #    cache_id: 'boost-cache-1-76-v3'
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find 'third_party_libs' -type f | xargs -t grep -e.
+    #    ls -R
+        
+        
+    #- name: Build boost
+    #  uses: Silverlan/pragma/github_actions/build_boost@actions
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    #- name: Download boost
+    #  uses: Silverlan/common_actions/curl_download@main
+    #  with:
+    #    download_url: 'https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.zip'
+    #    file_name: 'boost_1_76_0.zip'
+
+    #- name: Install boost
+    #  id: install-boost
+    #  shell: pwsh
+    #  run: |
+    #    mv "./third_party_libs/boost_1_76_0" "./third_party_libs/boost" 
+    #    cd "./third_party_libs/boost"
+    #    echo "Running boost bootstrap..."
+    #    .\bootstrap.bat
+    #    echo "Running b2..."
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=shared runtime-link=shared -j3
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=static runtime-link=shared -j3
+    #    set ZLIB_SOURCE="$PWD/third_party_libs/zlib"
+    #    set ZLIB_INCLUDE="$PWD/third_party_libs/zlib"
+    #    set ZLIB_LIBPATH="$PWD/third_party_libs/zlib/build/RelWithDebInfo"
+    #    echo "Running b2 for zlib..."
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=shared runtime-link=shared --with-iostreams -sZLIB_SOURCE=%ZLIB_SOURCE% -sZLIB_INCLUDE=%ZLIB_INCLUDE% -sZLIB_LIBPATH=%ZLIB_LIBPATH%
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=static runtime-link=shared --with-iostreams -sZLIB_SOURCE=%ZLIB_SOURCE% -sZLIB_INCLUDE=%ZLIB_INCLUDE% -sZLIB_LIBPATH=%ZLIB_LIBPATH%
+    #    echo "Done!"
+        
+    #- name: Write boost cache
+    #  uses: Silverlan/pragma/github_actions/write_cache@actions
+    #  with:
+    #    cache_dir: 'third_party_libs/boost'
+    #    cache_id: 'boost-cache-1-76-v3'
+        
+        
+    # Read cache test
+    #- name: Read cache
+    #  uses: Silverlan/pragma/github_actions/read_cache@actions
+    #  with:
+    #    cache_dir: 'third_party_libs/boost'
+    #    cache_id: 'boost-cache-1-76-v3'
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find 'third_party_libs' -type f | xargs -t grep -e.
+    #    ls -R
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    #- name: Download boost
+    #  uses: Silverlan/common_actions/curl_download@main
+    #  with:
+    #    download_url: 'https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.zip'
+    #    file_name: 'boost_1_76_0.zip'
+
+    #- name: Install boost
+    #  id: install-boost
+    #  shell: pwsh
+    #  run: |
+    #    mv "./third_party_libs/boost_1_76_0" "./third_party_libs/boost" 
+    #    cd "./third_party_libs/boost"
+    #    echo "Running boost bootstrap..."
+    #    .\bootstrap.bat
+    #    echo "Running b2..."
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=shared runtime-link=shared -j3
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=static runtime-link=shared -j3
+    #    set ZLIB_SOURCE="$PWD/third_party_libs/zlib"
+    #    set ZLIB_INCLUDE="$PWD/third_party_libs/zlib"
+    #    set ZLIB_LIBPATH="$PWD/third_party_libs/zlib/build/RelWithDebInfo"
+    #    echo "Running b2 for zlib..."
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=shared runtime-link=shared --with-iostreams -sZLIB_SOURCE=%ZLIB_SOURCE% -sZLIB_INCLUDE=%ZLIB_INCLUDE% -sZLIB_LIBPATH=%ZLIB_LIBPATH%
+    #    .\b2 toolset=msvc-14.2 address-model=64 stage variant=release link=static runtime-link=shared --with-iostreams -sZLIB_SOURCE=%ZLIB_SOURCE% -sZLIB_INCLUDE=%ZLIB_INCLUDE% -sZLIB_LIBPATH=%ZLIB_LIBPATH%
+    #    echo "Done!"
+       
+        
+        
+    # Write test
+    #- name: Download boost
+    #  shell: bash
+    #  run: |
+    #    mkdir -p third_party_libs/boost
+    #    cd third_party_libs/boost
+
+    #    curl -LJO https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.zip
+    #    7z x boost_1_76_0.zip -aos -y
+    #    cd ../
+        
+    #- name: Create some files
+    #  shell: bash
+    #  id: store
+    #  run: |
+    #    mkdir -p 'third_party_libs/boost/stage/lib'
+    #    cd 'third_party_libs/boost/stage/lib'
+    #    echo pwd $(pwd)
+    #    printf '%s' "Lorem ipsum" >> a.dll
+    #    printf '%s' "dolor sit amet" >> b.lib
+    #    printf '%s' "consectetur adipiscing elit" >> c.so
+    #    cat a.dll b.lib
+    #- name: Store everything cache
+    #  uses: actions/cache@v2.1.6
+    #  with:
+    #    path: |
+    #      third_party_libs/boost/**/*.dll
+    #      third_party_libs/boost/**/*.lib
+    #      third_party_libs/boost/**/*.so
+    #      third_party_libs/boost/**/*.a
+    #      third_party_libs/boost/**/*.h
+    #      third_party_libs/boost/**/*.hpp
+    #    key: test-cache-multi-files-v4-${{ hashFiles('third_party_libs/boost/**') }}
+    #- name: Print info
+    #  shell: bash
+    #  run: |
+    #    echo "Cache hit: ${{steps.store.outputs.cache-hit}}"
+        
+    # Read test
+    #- name: Restore cache
+    #  uses: actions/cache@v2.1.6
+    #  with:
+    #    path: |
+    #      third_party_libs/boost/**/*.dll
+    #      third_party_libs/boost/**/*.lib
+    #      third_party_libs/boost/**/*.so
+    #      third_party_libs/boost/**/*.a
+    #      third_party_libs/boost/**/*.h
+    #      third_party_libs/boost/**/*.hpp
+    #    key: test-cache-multi-files-v4-${{ hashFiles('third_party_libs/boost/**') }}
+    #    restore-keys: |
+    #      test-cache-multi-files-v4-${{ hashFiles('third_party_libs/boost/**') }}
+    #      test-cache-multi-files-v4-
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find '.' -type f | xargs -t grep -e.
+        
+        
+        
+        
+    
+    # Read cache test
+    #- name: Read cache
+    #  uses: Silverlan/common_actions/read_build_cache@actions
+    #  with:
+    #    cache_dir: 'third_party_libs/boost'
+    #    cache_id: 'test-cache-n'
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find 'third_party_libs' -type f | xargs -t grep -e.
+    # Read cache test
+    #- name: Read cache
+    #  uses: Silverlan/pragma/github_actions/read_cache@actions
+    #  with:
+    #    cache_dir: 'third_party_libs/boost'
+    #    cache_id: 'test-cache-n-cv11'
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find 'third_party_libs' -type f | xargs -t grep -e.
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    # Bug Test Write
+    # Write cache test
+    #- name: Create files
+    #  shell: bash
+    #  id: store
+    #  run: |
+    #    mkdir -p 'dir/subdir'
+    #    cd 'dir/subdir'
+    #    echo pwd $(pwd)
+    #    printf '%s' "Lorem ipsum" >> a.dll
+    #    printf '%s' "dolor sit amet" >> b.lib
+    #    printf '%s' "dolor sit amet" >> c.so
+    #    cat a.dll b.lib c.so
+        
+    #- name: Store in cache
+    #  uses: actions/cache@v2.1.6
+    #  with:
+    #    path: |
+    #      dir/subdir/**/*.dll
+    #      dir/subdir/**/*.lib
+    #      dir/subdir/**/*.so
+    #    key: cache-test-${{ hashFiles('${{ inputs.cache_dir }}/**') }}
+        
+    # Bug Test Read
+    #- name: Restore
+    #  uses: actions/cache@v2.1.6
+    #  with:
+    #    path: |
+    #      dir/subdir/**/*.dll
+    #      dir/subdir/**/*.lib
+    #      dir/subdir/**/*.so
+    #    key: cache-test-${{ hashFiles('dir/subdir/**') }}
+    #    restore-keys: |
+    #      cache-test-${{ hashFiles('dir/subdir/**') }}
+    #      cache-test-
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find 'dir' -type f | xargs -t grep -e.
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    ############################## WORKS ##############################
+    # Write cache test
+    #- name: Build submodule
+    #  uses: Silverlan/common_actions/build_submodule@actions
+    #  with:
+    #    repo: 'https://github.com/Silverlan/test_shared_library'
+    #    repo_name: 'test_shared_library'
+    #    repo_branch: 'main'
+    #    build_target: test_shared_library
+        
+    #- name: Write cache
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: "D:/a/pragma/pragma/**/*.dll"
+    #    key: test-cache-file13
+    
+    # Read cache test
+    #- name: Get cached file
+    #  uses: actions/cache@v2
+    #  id: get-cached-file
+    #  with:
+    #    path: "D:/a/pragma/pragma/**/*.dll"
+    #    key: test-cache-file13
+    ############################## WORKS ##############################
+    
+    # Test with single path
+    #- name: Create files
+    #  shell: bash
+    #  run: |
+    #    mkdir subdir
+    #    cd subdir
+    #    printf '%s' "Lorem ipsum" >> a.txt
+        
+    #- name: Write cache (Single path)
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: "D:/a/pragma/pragma/**/*.txt"
+    #    key: test-cache-single-path
+    
+    # Read cache
+    #- name: Get cached file
+    #  uses: actions/cache@v2
+    #  id: get-cache
+    #  with:
+    #    path: "D:/a/pragma/pragma/**/*.txt"
+    #    key: test-cache-single-path
+    
+    #- name: Print files
+    #  shell: bash
+    #  run: |
+    #    echo "Cache hit: ${{steps.get-cache.outputs.cache-hit}}"
+    #    cd "D:/a/pragma/pragma"
+    #    ls -R
+    #    cat "D:/a/pragma/pragma/subdir/a.txt"
+    
+    
+    
+    
+    
+    
+    #- name: Create files
+    #  shell: bash
+    #  id: store
+    #  run: |
+    #    mkdir -p 'cache_test2/subdir'
+    #    cd 'cache_test2/subdir'
+    #    echo pwd $(pwd)
+    #    printf '%s' "Lorem ipsum" >> a.txt
+    #    printf '%s' "dolor sit amet" >> b.md
+    #    cat a.txt b.md
+    # Write cache test
+    #- name: Write cache
+    #  uses: Silverlan/pragma/github_actions/write_cache@actions
+    #  with:
+    #    cache_dir: 'cache_test2'
+    #    cache_id: 'test-cache-q'
+    
+    # Write cache test
+    #- name: Read cache
+    #  uses: Silverlan/pragma/github_actions/read_cache@actions
+    #  with:
+    #    cache_dir: 'cache_test2'
+    #    cache_id: 'test-cache-q'
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find cache_test2 -type f | xargs -t grep -e.
+    
+
+    
+    #- name: Create files
+    #  shell: bash
+    #  id: store
+    #  run: |
+    #    mkdir -p 'cache_test/subdir'
+    #    cd 'cache_test/subdir'
+    #    echo pwd $(pwd)
+    #    printf '%s' "Lorem ipsum" >> a.txt
+    #    printf '%s' "dolor sit amet" >> b.md
+    #    cat a.txt b.md
+    #- name: Store in cache
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: |
+    #      cache_test/**/*.txt
+    #      cache_test/**/*.md
+    #    key: multiple-filesX-${{ hashFiles('cache_test/**') }}
+    #- name: Print files (A)
+    #  shell: bash
+    #  run: |
+    #    echo "Cache hit: ${{steps.store.outputs.cache-hit}}"
+    #    find cache_test/subdir
+    #    cat cache_test/subdir/a.txt
+    #    cat cache_test/subdir/b.md
+
+    #- name: Restore
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: |
+    #      cache_test/**/*.txt
+    #      cache_test/**/*.md
+    #    key: multiple-filesX-${{ hashFiles('cache_test/**') }}
+    #    restore-keys: |
+    #      multiple-filesX-${{ hashFiles('cache_test/**') }}
+    #      multiple-files-
+    #- name: Print files (B)
+    #  shell: bash
+    #  run: |
+    #    find cache_test -type f | xargs -t grep -e.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # Test with multiple paths
+    #- name: Create files
+    #  shell: bash
+    #  run: |
+    #    mkdir -p cache_test/subdir
+    #    cd cache_test/subdir
+    #    printf '%s' "Lorem ipsum" >> a.txt
+    #    printf '%s' "dolor sit amet" >> b.md
+        
+    #- name: Write cache (Multi path)
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: |
+    #      "cache_test/**/*.txt"
+    #      "cache_test/**/*.md"
+    #    key: test-cache-multi-path-${{ hashFiles('cache_test/**') }}
+    
+    # Read cache
+    #- name: Get cached file
+    #  uses: actions/cache@v2
+    #  id: get-cache
+    #  with:
+    #    path: |
+    #      "cache_test/**/*.txt"
+    #      "cache_test/**/*.md"
+    #    key: test-cache-multi-path-${{ hashFiles('cache_test/**') }}
+    
+    #- name: Print files
+    #  shell: bash
+    #  run: |
+    #    echo "Cache hit: ${{steps.get-cache.outputs.cache-hit}}"
+    #    cd "D:/a/pragma/pragma"
+    #    ls -R
+    #    cat "D:/a/pragma/pragma/subdir/a.txt"
+    #    cat "D:/a/pragma/pragma/subdir/b.md"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # Write cache test
+    #- name: Build submodule
+    #  uses: Silverlan/common_actions/build_submodule@actions
+    #  with:
+    #    repo: 'https://github.com/Silverlan/test_shared_library'
+    #    repo_name: 'test_shared_library'
+    #    repo_branch: 'main'
+    #    build_target: test_shared_library
+        
+    #- name: Write cache
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: |
+    #      "D:/a/pragma/pragma/**/*.dll"
+    #      "D:/a/pragma/pragma/**/*.lib"
+    #    key: test-cache-file14
+    
+    # Read cache test
+    #- name: Get cached file
+    #  uses: actions/cache@v2
+    #  id: get-cached-file
+    #  with:
+    #    path: |
+    #      "D:/a/pragma/pragma/**/*.dll"
+    #      "D:/a/pragma/pragma/**/*.lib"
+    #    key: test-cache-file14
+            
+    #- name: Print files
+    #  shell: bash
+    #  run: |
+    #    echo "Cache hit: ${{steps.get-cached-file.outputs.cache-hit}}"
+    #    cd "D:/a/pragma/pragma"
+    #    ls -R
+        
+    - shell: bash
+      run: |
+        echo "Done!"
