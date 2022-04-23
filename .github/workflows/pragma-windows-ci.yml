@@ -38,7 +38,7 @@ jobs:
           
       - name: Build
         id: build
-        uses: Silverlan/test_ga_wgui/github_actions/build@main
+        uses: Silverlan/test_ga_wgui/github_actions/test_cache@main
         with:
           root_dir: "${{ env.GA_ROOT_DIR }}"
           should_checkout: "0"
