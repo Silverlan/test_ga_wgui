@@ -29,8 +29,8 @@ runs:
         #path: |
         #  ${{ inputs.path }}
         path: |
-          '~/build/**'
-          '~/build/test.txt'
+          ./build/**
+          ./build/test.txt
         key: ${{ inputs.key }}-v${{ inputs.cache_version }}
         
     - uses: ChristopherHX/conditional@b4a9649204f81002ec9a4ef7d4bf7d6b2ab7fa55
