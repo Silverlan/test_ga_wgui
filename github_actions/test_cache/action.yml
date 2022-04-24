@@ -48,6 +48,27 @@ runs:
         repo_name: 'mathutil'
         dir: 'external_libs'
         cmake_var: 'DEPENDENCY_MATHUTIL_INCLUDE'
+    - name: Download sharedutils
+      uses: Silverlan/common_actions/get_submodule@main
+      with:
+        repo: 'https://github.com/Silverlan/sharedutils.git'
+        repo_name: 'sharedutils'
+        dir: 'external_libs'
+        cmake_var: 'DEPENDENCY_SHAREDUTILS_INCLUDE'
+        
+    # Build
+    - name: Build sharedutils-static
+      uses: Silverlan/common_actions/build_cmake@main
+      with:
+        build_type: ${{ matrix.config.build_type }}
+        build_generator: ${{ matrix.config.generators }}
+        cmake_definitions_tmp: "${{ steps.init-cmake-defs.outputs.tmp-cmake-vars }} ${{ env.cmake_definitions }} -DSHAREDUTILS_STATIC=ON -DDEPENDENCY_MATHUTIL_INCLUDE=$GA_ROOT_DIR/external_libs/mathutil/include"
+        build_target: 'sharedutils'
+        build_dir: 'build/external_libs/sharedutils-static'
+        cmake_script_location: 'external_libs/sharedutils'
+        cmake_var: 'DEPENDENCY_SHAREDUTILS_LIBRARY_STATIC'
+        cmake_definitions: ${{ env.cmake_definitions }}
+        static_library: '1'
       ##
       
     #- name: Cache Test
