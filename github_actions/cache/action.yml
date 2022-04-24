@@ -49,4 +49,10 @@ runs:
           with:
             path: |
               ./build/**.dll
+              ./build/**.lib
+              ./build/**.so
+              ./build/**.a
+              ./build/**.exe
+              ./build/**.h
+              ./build/**.hpp
             key: ${{ inputs.key }}-v${{ inputs.cache_version }}
