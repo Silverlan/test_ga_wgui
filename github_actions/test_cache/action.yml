@@ -19,31 +19,35 @@ runs:
       id: init-env
       uses: Silverlan/common_actions/set_common_env_vars@main
       
+      #
+    - name: Download GLM
+      uses: Silverlan/common_actions/get_glm@main
+      with:
+        cmake_var: 'DEPENDENCY_GLM_INCLUDE'
+        cmake_definitions: ${{ env.cmake_definitions }}
+        
+    - name: Build GeometricTools
+      uses: Silverlan/common_actions/build_geometric_tools@actions
+      #
+      
+    #- name: Cache Test
+    #  id: cache
+    #  uses: Silverlan/test_ga_wgui/github_actions/cache@main
+    #  with:
+    #    path: './build/external_libs/mathutil/'
+    #    #  '~/build/**'
+    #    #  '~/build/test.txt'
+    #    key: cache-test
+    #    cache_version: '13'
+    #    step: |
+    #      name: Rebuild Test
+    #      uses: Silverlan/common_actions/get_common_external_libs@actions
+    #      # uses: Silverlan/test_ga_wgui/github_actions/test_build@main
+
     #- shell: bash
     #  run: |
-    #    echo "TestFile" > "./build/test.txt"
-      
-    - name: Cache Test
-      id: cache
-      uses: Silverlan/test_ga_wgui/github_actions/cache@main
-      with:
-        path: './build/external_libs/mathutil/'
-        #  '~/build/**'
-        #  '~/build/test.txt'
-        key: cache-test
-        cache_version: '13'
-        step: |
-          name: Rebuild Test
-          uses: Silverlan/common_actions/get_common_external_libs@actions
-          # uses: Silverlan/test_ga_wgui/github_actions/test_build@main
-
-    - shell: bash
-      run: |
-        echo "Building submodule..."
+    #    echo "Building submodule..."
         
-    #- name: Build mathutil
-    #  uses: Silverlan/mathutil/github_actions/build@master
-    
     # Read cache test
     - name: Print files
       shell: bash
