@@ -29,13 +29,7 @@ runs:
         #path: |
         #  ${{ inputs.path }}
         path: |
-          ./build/**.dll
-          ./build/**.lib
-          ./build/**.so
-          ./build/**.a
-          ./build/**.exe
-          ./build/**.h
-          ./build/**.hpp
+          ./build/**
         key: ${{ inputs.key }}-v${{ inputs.cache_version }}
         
     - uses: ChristopherHX/conditional@b4a9649204f81002ec9a4ef7d4bf7d6b2ab7fa55
@@ -43,6 +37,7 @@ runs:
       with:
         if: "${{steps.get-cache.outputs.cache-hit!='true'}}"
         step: ${{ inputs.step }}
+    # TODO: Remove all files from build/ that we don't want to cache
         
     - uses: ChristopherHX/conditional@b4a9649204f81002ec9a4ef7d4bf7d6b2ab7fa55
       name: Write cache
@@ -54,11 +49,5 @@ runs:
           id: write-cache
           with:
             path: |
-              ./build/**.dll
-              ./build/**.lib
-              ./build/**.so
-              ./build/**.a
-              ./build/**.exe
-              ./build/**.h
-              ./build/**.hpp
+              ./build/**
             key: ${{ inputs.key }}-v${{ inputs.cache_version }}
