@@ -28,6 +28,26 @@ runs:
         
     - name: Build GeometricTools
       uses: Silverlan/common_actions/build_geometric_tools@actions
+      
+    - name: Initialize CMake definitions
+      id: init-cmake-defs
+      shell: bash
+      run: |
+        tmpCmakeVars=''
+        buildAsStatic='0'
+        if [[ "${{ inputs.build_shared }}" == "0" ]]; then
+          tmpCmakeVars=' -DMATHUTIL_STATIC=ON -DSHAREDUTILS_STATIC=ON -DVFILESYSTEM_STATIC=ON -DLINK_COMMON_LIBS_STATIC=ON'
+          buildAsStatic='1'
+        fi
+        echo "::set-output name=tmp-cmake-vars::$(echo $tmpCmakeVars)"
+        echo "::set-output name=build-as-static::$(echo $buildAsStatic)"
+    - name: Download mathutil
+      uses: Silverlan/common_actions/get_submodule@actions
+      with:
+        repo: 'https://github.com/Silverlan/mathutil.git'
+        repo_name: 'mathutil'
+        dir: 'external_libs'
+        cmake_var: 'DEPENDENCY_MATHUTIL_INCLUDE'
       ##
       
     #- name: Cache Test
