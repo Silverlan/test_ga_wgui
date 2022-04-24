@@ -31,7 +31,7 @@ runs:
         #  '~/build/**'
         #  '~/build/test.txt'
         key: cache-test
-        cache_version: '10'
+        cache_version: '11'
         step: |
           name: Rebuild Test
           uses: Silverlan/common_actions/get_common_external_libs@actions
